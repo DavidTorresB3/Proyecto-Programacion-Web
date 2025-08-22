@@ -1,0 +1,12 @@
+importar un repositorio 
+git pull
+
+git clone "link del github"
+
+paso a paso para Subir el contenido
+git status
+
+git add .
+git commit -m ""
+
+git push
