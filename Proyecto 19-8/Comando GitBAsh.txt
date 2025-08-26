@@ -14,8 +14,6 @@ GUIA PARA UN NUEVO REPOSITORIO
 
 create a new repository on the command line
 "ir a la ruta donde va a quedar el repositorio"
-git config --global user.name "Tu Nombre"
-git config --global user.email "tu_correo@example.com"
 git init
 git add .
 git commit -m "first commit"
