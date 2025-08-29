@@ -1,47 +1,57 @@
+/* Importa la fuente Roboto desde Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
+/* Variables de colores y estilos globales */
 :root {
-    --primary-color: #0a0a1a;
-    --secondary-color: #1a1a3a;
-    --accent-color: #00ffff;
-    --text-color: #e0e0e0;
-    --border-radius: 8px;
+    --primary-color: #0a0a1a;         /* Color principal de fondo */
+    --secondary-color: #1a1a3a;       /* Color secundario para secciones */
+    --accent-color: #00ffff;          /* Color de acento para detalles */
+    --text-color: #e0e0e0;            /* Color principal del texto */
+    --border-radius: 8px;             /* Radio de borde para elementos */
 }
 
+/* Estilos generales del body */
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif; /* Fuente principal */
     margin: 0;
     padding: 0;
-    background-color: var(--primary-color);
-    color: var(--text-color);
+    background-color: var(--primary-color); /* Fondo oscuro */
+    color: var(--text-color);               /* Texto claro */
 }
 
-/* Header */
+/* ===================== HEADER ===================== */
+
+/* Estilos para el encabezado principal */
 .header {
-    background-color: var(--secondary-color);
+    background-color: var(--secondary-color); /* Fondo del header */
     padding: 2rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid var(--accent-color);
+    border-bottom: 1px solid var(--accent-color); /* Línea inferior de acento */
 }
 
+/* Logo: título principal */
 .logo h1 {
     position: absolute;
     margin: 0;
-    color: var(--accent-color);
+    color: var(--accent-color);    /* Color de acento */
     font-weight: 700;
     letter-spacing: 2px;
     left: 120px;
     top: 20px;
 }
+
+/* Logo: imagen */
 .logo img{
     position: absolute;
     left: 10px;
     top: 10px;
-
 }
 
+/* ===================== NAVEGACIÓN ===================== */
+
+/* Lista de navegación */
 .nav ul {
     list-style: none;
     margin: 0;
@@ -49,10 +59,12 @@ body {
     display: flex;
 }
 
+/* Elementos de la lista de navegación */
 .nav ul li {
     margin-left: 2rem;
 }
 
+/* Enlaces de navegación */
 .nav a {
     color: var(--text-color);
     text-decoration: none;
@@ -60,16 +72,19 @@ body {
     transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
+/* Efecto hover en los enlaces de navegación */
 .nav a:hover {
     color: var(--accent-color);
     text-shadow: 0 0 5px var(--accent-color);
 }
 
-/* Main Content */
+/* ===================== CONTENIDO PRINCIPAL ===================== */
+
 .main-content {
     padding: 2rem;
 }
 
+/* Sección principal tipo "hero" */
 .hero {
     text-align: center;
     padding: 4rem 2rem;
@@ -78,17 +93,20 @@ body {
     margin-bottom: 3rem;
 }
 
+/* Título de la sección hero */
 .hero h2 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
     color: var(--accent-color);
 }
 
-/* News Section */
+/* ===================== SECCIÓN DE NOTICIAS ===================== */
+
 .news-section {
     padding: 2rem 0;
 }
 
+/* Título de la sección de noticias */
 .news-section h2 {
     text-align: center;
     font-size: 2rem;
@@ -98,12 +116,14 @@ body {
     padding-bottom: 0.5rem;
 }
 
+/* Grid de tarjetas de noticias */
 .news-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
 }
 
+/* Tarjeta individual de noticia */
 .news-card {
     background-color: var(--secondary-color);
     border: 1px solid #333;
@@ -112,16 +132,19 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Efecto hover en la tarjeta de noticia */
 .news-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 255, 255, 0.1);
 }
 
+/* Título de la tarjeta de noticia */
 .news-card h3 {
     color: var(--accent-color);
     margin-top: 0;
 }
 
+/* Enlace de la tarjeta de noticia */
 .news-card a {
     color: var(--accent-color);
     text-decoration: none;
@@ -130,12 +153,13 @@ body {
     margin-top: 1rem;
 }
 
-/* Footer */
+/* ===================== FOOTER ===================== */
+
+/* Estilos para el pie de página */
 .footer {
     text-align: center;
     padding: 1.5rem;
     margin-top: 2rem;
     background-color: var(--secondary-color);
-    border-top: 1px solid #333;
-    font-size: 0.9rem;
+    border-top: 1px solid
 }
