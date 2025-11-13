@@ -4,14 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Comparar Dispositivos — Comparatech</title>
-
-  <!-- Estilos -->
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <div class="conteiner">
+    <!-- HEADER -->
     <header class="header">
       <div class="logo">
         <a href="Index.html"><img src="Imagenes/Logos/logo1.png" alt="logo" width="100"></a>
@@ -31,12 +30,15 @@
       </nav>
     </header>
 
+    <!-- CONTENIDO PRINCIPAL -->
     <section class="comparison-page">
       <h2>Comparación de dispositivos</h2>
       <div id="compare-container" class="comparison-grid"></div>
     </section>
+    <button id="clear-compare" class="submit-button" style="margin:15px 0;">🔄 Reiniciar comparación</button>
   </div>
 
+  <!-- SCRIPT DE COMPARACIÓN + CALIFICACIONES -->
   <script>
   document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("compare-container");
@@ -47,9 +49,8 @@
       return;
     }
 
-    // Simular datos extra si no están disponibles
-    const specsSimuladas = {
-      procesador: ["Snapdragon 8 Gen 3", "Apple A17 Pro", "Tensor G3", "Dimensity 9200", "Snapdragon 7 Gen 2"],
+    const specs = {
+      procesador: ["Snapdragon 8 Gen 3", "Apple A17 Pro", "Tensor G3", "Dimensity 9200"],
       ram: ["8 GB", "12 GB", "16 GB", "6 GB"],
       pantalla: ["6.7'' AMOLED 120Hz", "6.8'' LTPO OLED", "6.5'' Super Retina XDR"],
       bateria: ["5000 mAh", "4800 mAh", "4500 mAh", "5300 mAh"],
@@ -57,20 +58,88 @@
     };
 
     container.innerHTML = datos.map((p, i) => `
-      <div class="comparison-card">
+      <div class="comparison-card" data-id="${i}">
         <img src="${p.imagen}" alt="${p.nombre}">
         <h3>${p.nombre}</h3>
         <p><strong>Marca:</strong> ${p.marca}</p>
         <p><strong>Precio:</strong> ${p.precio}</p>
-        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 10px 0;">
-        <p><strong>Procesador:</strong> ${specsSimuladas.procesador[i % specsSimuladas.procesador.length]}</p>
-        <p><strong>RAM:</strong> ${specsSimuladas.ram[i % specsSimuladas.ram.length]}</p>
-        <p><strong>Pantalla:</strong> ${specsSimuladas.pantalla[i % specsSimuladas.pantalla.length]}</p>
-        <p><strong>Batería:</strong> ${specsSimuladas.bateria[i % specsSimuladas.bateria.length]}</p>
-        <p><strong>Cámara:</strong> ${specsSimuladas.camara[i % specsSimuladas.camara.length]}</p>
+        <hr>
+        <p><strong>Procesador:</strong> ${specs.procesador[i % specs.procesador.length]}</p>
+        <p><strong>RAM:</strong> ${specs.ram[i % specs.ram.length]}</p>
+        <p><strong>Pantalla:</strong> ${specs.pantalla[i % specs.pantalla.length]}</p>
+        <p><strong>Batería:</strong> ${specs.bateria[i % specs.bateria.length]}</p>
+        <p><strong>Cámara:</strong> ${specs.camara[i % specs.camara.length]}</p>
+
+        <div class="rating-section">
+          <h4>Califica este producto:</h4>
+          <div class="stars" data-rating="0">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          </div>
+          <textarea placeholder="Escribe tu opinión..." maxlength="120"></textarea>
+          <button class="submit-review">Enviar opinión</button>
+          <p class="average-rating">⭐ Promedio: <span>0.0</span>/5</p>
+          <div class="reviews-list"></div>
+        </div>
       </div>
     `).join("");
+
+    // --- LÓGICA DE CALIFICACIONES ---
+    document.querySelectorAll(".comparison-card").forEach(card => {
+      const id = card.dataset.id;
+      const stars = card.querySelectorAll(".stars span");
+      const textarea = card.querySelector("textarea");
+      const btn = card.querySelector(".submit-review");
+      const avgText = card.querySelector(".average-rating span");
+      const reviewsList = card.querySelector(".reviews-list");
+
+      let rating = 0;
+
+      // seleccionar estrellas
+      stars.forEach((star, idx) => {
+        star.addEventListener("click", () => {
+          rating = idx + 1;
+          stars.forEach((s, i) => s.style.color = i < rating ? "#00bcd4" : "#555");
+        });
+      });
+
+      // enviar reseña
+      btn.addEventListener("click", () => {
+        const comment = textarea.value.trim();
+        if (!rating) return alert("Selecciona una calificación.");
+        if (!comment) return alert("Escribe un comentario.");
+
+        const all = JSON.parse(localStorage.getItem("reviews") || "{}");
+        if (!all[id]) all[id] = [];
+        all[id].push({ stars: rating, comment });
+        localStorage.setItem("reviews", JSON.stringify(all));
+
+        textarea.value = "";
+        rating = 0;
+        stars.forEach(s => s.style.color = "#555");
+        loadReviews();
+      });
+
+      function loadReviews() {
+        const all = JSON.parse(localStorage.getItem("reviews") || "{}");
+        const data = all[id] || [];
+        if (data.length === 0) return;
+        const avg = (data.reduce((a,b) => a + b.stars, 0) / data.length).toFixed(1);
+        avgText.textContent = avg;
+        reviewsList.innerHTML = data.slice(-3).map(r => 
+          `<p>⭐ ${r.stars} — ${r.comment}</p>`).join("");
+      }
+
+      loadReviews();
+    });
   });
+    // Botón para limpiar comparación
+  const clearBtn = document.getElementById("clear-compare");
+  clearBtn.addEventListener("click", () => {
+    localStorage.removeItem("comparar");
+    alert("🔄 Comparación reiniciada. Vuelve a seleccionar productos.");
+    location.reload();
+  });
+
   </script>
 </body>
 </html>

@@ -179,18 +179,10 @@
       return;
     }
 
- // Limitar a máximo 2 productos
     if (current.length >= 2) {
-      const ir = confirm("Ya tienes 2 productos seleccionados. ¿Deseas reiniciar la comparación?");
-      if (ir) {
-        localStorage.removeItem("comparar");
-        alert("🔄 Lista de comparación reiniciada. Agrega nuevos productos.");
-      } else {
-        alert("⚠️ No puedes agregar más de 2 productos.");
-      }
+      alert("⚠️ Ya tienes 2 productos seleccionados. Ve a comparar.");
       return;
-}
-
+    }
 
     current.push(producto);
     writeLocal("comparar", current);
