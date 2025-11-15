@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soporte</title>
+    <link rel="stylesheet" href="../styles/styles.css"> 
+    <link rel="icon" href="../images/Logos/logo1.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="conteiner"> 
+        <!--Ini - Encabezado -->
+        <header class="header">
+            <div class="logo">
+                <a href="index.html" ><img src="../images/Logos/logo1.png" alt="logo" width="100"></a>
+                <h1>Comparatech</h1>
+            </div>
+        
+            <!--Ini - Navegación -->
+            <nav class="nav">
+                <ul>
+                    <div class="dropdown">
+                        <button>≡</button>
+                        <div class="dropdown-options">
+                            <a href="inicio.html">Inicio</a>
+                            <a href="noticias.html">Noticias</a>
+                            <a href="categoria.html">Categorías</a>
+                            <a href="soporte.html">Soporte</a>
+                        </div>
+                    </div>
+                </ul>
+            </nav> 
+            <!--Fin - Navegación -->
+        </header>
+        <!--Fin - Encabezado -->
+
+        <!--Ini - Contenido principal -->
+        <main class="main-content">
+            <!--Ini - Sección de Encuesta -->
+            <section class="survey-section">
+                <h2>Encuesta de Satisfacción</h2>
+                <p class="subtitle">¡Tu opinión nos importa!</p>
+                <p>Ayúdanos a mejorar dedicando un minuto a completar esta encuesta. Tus respuestas son anónimas y nos ayudarán a ofrecerte una mejor experiencia.</p>
+                
+                <form id="satisfaction-form" class="survey-form" novalidate>
+                    <!-- Calificación Rápida -->
+                    <fieldset class="form-group">
+                        <legend>1. ¿Cómo calificarías tu experiencia general?</legend>
+                        <div class="star-rating">
+                            <input type="radio" id="star5" name="rating" value="5" required><label for="star5" title="Excelente"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="Muy Bueno"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="Bueno"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="Regular"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="Malo"><i class="fas fa-star"></i></label>
+                        </div>
+                    </fieldset>
+
+                    <!-- Pregunta de Opción Múltiple -->
+                    <fieldset class="form-group">
+                        <legend>2. ¿Qué parte de nuestra web te gustó más?</legend>
+                        <div class="radio-group">
+                            <label><input type="radio" name="favorite-feature" value="diseño" required> Diseño</label>
+                            <label><input type="radio" name="favorite-feature" value="velocidad"> Velocidad</label>
+                            <label><input type="radio" name="favorite-feature" value="contenido"> Contenido</label>
+                            <label><input type="radio" name="favorite-feature" value="facilidad"> Facilidad de uso</label>
+                        </div>
+                    </fieldset>
+
+                    <!-- Campo de Texto Libre -->
+                    <div class="form-group">
+                        <label for="suggestions">3. ¿Tienes alguna sugerencia para nosotros?</label>
+                        <textarea id="suggestions" name="suggestions" rows="4" maxlength="300" placeholder="Escribe tus ideas aquí..."></textarea>
+                        <div id="char-counter" class="char-counter">300/300</div>
+                    </div>
+
+                    <!-- Checkbox de Términos y Condiciones -->
+                    <div class="form-group">
+                        <div class="radio-group">
+                            <label><input type="checkbox" id="terms-accept" name="terms" required> Acepto los términos y condiciones</label>
+                        </div>
+                    </div>
+
+                    <!-- Botón de Envío -->
+                    <div class="form-group">
+                        <button type="submit" id="submit-btn" class="submit-button">
+                            <span class="btn-text">Enviar Opinión</span>
+                            <span class="btn-loader" style="display: none;"></span>
+                        </button>
+                    </div>
+                    
+                    <!-- Mensaje de Estado -->
+                    <div id="form-status" class="form-status"></div>
+                </form>
+            </section>
+            <!--Fin - Sección de Encuesta -->
+
+            <!--Ini - Sección de FAQ -->
+            <section class="faq-section">
+                <h2>Preguntas Frecuentes (FAQ)</h2>
+                <div class="faq-search-container">
+                    <input type="text" id="faq-search" class="faq-search" placeholder="Busca una pregunta...">
+                </div>
+                <div class="faq-accordion">
+                    <!-- Pregunta 1 -->
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>¿Cómo envío sugerencias?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Puedes enviarnos tus sugerencias a través de nuestro formulario de contacto en esta misma página. ¡Valoramos mucho tu opinión!</p>
+                        </div>
+                    </div>
+                    <!-- Pregunta 2 -->
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>¿Qué hago si encuentro un error?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Si encuentras un error o un problema técnico, por favor, repórtalo usando el formulario de contacto. Incluye tantos detalles como sea posible para que podamos solucionarlo rápidamente.</p>
+                        </div>
+                    </div>
+                    <!-- Pregunta 3 -->
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>¿En cuánto tiempo responden?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Nuestro equipo de soporte responde a todas las consultas en un plazo de 24 a 48 horas hábiles. Te enviaremos un número de ticket para que puedas hacer seguimiento.</p>
+                        </div>
+                    </div>
+                    <!-- Pregunta 4 -->
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>¿Cómo puedo seguir el estado de mi ticket?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Actualmente, el seguimiento de tickets se realiza por correo electrónico. Recibirás actualizaciones directamente en tu bandeja de entrada. Estamos trabajando para implementar un portal de seguimiento en el futuro.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-footer">
+                    <p>¿No encontraste tu respuesta?</p>
+                    <button id="scroll-to-contact" class="submit-button">Contáctanos</button>
+                </div>
+            </section>
+            <!--Fin - Sección de FAQ -->
+
+            <!--Ini - Sección de Contacto y Soporte -->
+            <section id="contact-section" class="contact-section">
+                <!-- Formulario de Contacto -->
+                <form id="contact-form" class="contact-form" novalidate>
+
+                    <h3>Soporte tecnico</h3>
+                    <div class="form-group">
+                        <label for="contact-name">Nombre:</label>
+                        <input type="text" id="contact-name" name="contact-name" placeholder="Tu nombre completo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email">Correo electrónico:</label>
+                        <input type="email" id="contact-email" name="contact-email" placeholder="tu@correo.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-subject">Asunto:</label>
+                        <input type="text" id="contact-subject" name="contact-subject" placeholder="Asunto de tu mensaje" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-message">Mensaje:</label>
+                        <textarea id="contact-message" name="contact-message" rows="5" maxlength="500" placeholder="Describe tu duda, problema o inquitud..." required></textarea>
+                        <div id="contact-char-counter" class="char-counter">500/500</div>
+                    </div>
+                    <!-- Checkbox de Términos y Condiciones -->
+                    <div class="form-group checkbox-group">
+                        <label><input type="checkbox" id="terms-accept" name="terms" required> Acepto los términos y condiciones</label>
+                    </div>
+    </div>
+    
+                    
+                    <div class="form-group">
+                        <button type="submit" class="submit-button">Enviar Mensaje</button>
+                    </div>
+                    <div id="contact-form-status" class="form-status"></div>
+            
+                </form>
+
+            </section>
+            <!--Fin - Sección de Contacto y Soporte -->
+        </main>
+        <!--Fin - Contenido principal -->
+
+        <!--Ini - Pie de página -->
+        <footer class="footer">
+            <p>@Derechos reservados por MONDONGO INTERACTIVE SAS</p>
+        </footer>
+        <!--Fin - Pie de página -->
+
+        <!--Ini - Script -->
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const form = document.getElementById('satisfaction-form');
+                const suggestions = document.getElementById('suggestions');
+                const charCounter = document.getElementById('char-counter');
+                const contactMe = document.getElementById('contact-me');
+                const contactFields = document.getElementById('contact-fields');
+                const submitBtn = document.getElementById('submit-btn');
+                const btnText = submitBtn.querySelector('.btn-text');
+                const btnLoader = submitBtn.querySelector('.btn-loader');
+                const formStatus = document.getElementById('form-status');
+
+                // Contador de caracteres
+                suggestions.addEventListener('input', () => {
+                    const remaining = suggestions.maxLength - suggestions.value.length;
+                    charCounter.textContent = `${remaining}/300`;
+                });
+
+                // Mostrar/ocultar campos de contacto
+                contactMe.addEventListener('change', () => {
+                    contactFields.style.display = contactMe.checked ? 'block' : 'none';
+                    if (contactMe.checked) {
+                        document.getElementById('name').required = true;
+                        document.getElementById('email').required = true;
+                    } else {
+                        document.getElementById('name').required = false;
+                        document.getElementById('email').required = false;
+                    }
+                });
+
+                // Simulación de envío del formulario
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    if (!form.checkValidity()) {
+                        form.reportValidity();
+                        return;
+                    }
+
+                    // Estado de carga
+                    btnText.textContent = 'Enviando...';
+                    btnLoader.style.display = 'inline-block';
+                    submitBtn.disabled = true;
+                    formStatus.textContent = '';
+                    formStatus.className = 'form-status';
+
+                    // Simular una llamada a un backend
+                    setTimeout(() => {
+                        const isSuccess = Math.random() > 0.2; // 80% de éxito
+
+                        if (isSuccess) {
+                            formStatus.textContent = '¡Gracias por tu opinión! La hemos recibido correctamente.';
+                            formStatus.classList.add('success');
+                            form.reset();
+                            charCounter.textContent = '300/300';
+                            contactFields.style.display = 'none';
+                        } else {
+                            formStatus.textContent = 'Hubo un error al enviar tu opinión. Por favor, inténtalo de nuevo.';
+                            formStatus.classList.add('error');
+                        }
+
+                        // Restaurar botón
+                        btnText.textContent = 'Enviar Opinión';
+                        btnLoader.style.display = 'none';
+                        submitBtn.disabled = false;
+
+                    }, 1500);
+                });
+
+                // --- Lógica del Formulario de Contacto ---
+                const contactForm = document.getElementById('contact-form');
+                const contactMessage = document.getElementById('contact-message');
+                const contactCharCounter = document.getElementById('contact-char-counter');
+                const contactFormStatus = document.getElementById('contact-form-status');
+
+                // Contador de caracteres del formulario de contacto
+                contactMessage.addEventListener('input', () => {
+                    const remaining = contactMessage.maxLength - contactMessage.value.length;
+                    contactCharCounter.textContent = `${remaining}/500`;
+                });
+
+                // Envío del formulario de contacto
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    contactFormStatus.textContent = '';
+                    contactFormStatus.className = 'form-status';
+
+                    if (!contactForm.checkValidity()) {
+                        contactForm.reportValidity();
+                        return;
+                    }
+
+                    // Generar número de ticket aleatorio
+                    const ticketId = `TCK-${Math.random().toString(36).substring(2, 6).toUpperCase()}-${new Date().getFullYear()}`;
+
+                    contactFormStatus.textContent = `¡Gracias por contactarnos! Tu mensaje ha sido recibido. Tu número de ticket es: ${ticketId}`;
+                    contactFormStatus.classList.add('success');
+                    
+                    contactForm.reset();
+                    contactCharCounter.textContent = '500/500';
+                });
+
+                // --- Lógica de la Sección FAQ ---
+                const faqItems = document.querySelectorAll('.faq-item');
+                const faqSearch = document.getElementById('faq-search');
+                const scrollToContactBtn = document.getElementById('scroll-to-contact');
+
+                // Funcionalidad del acordeón
+                faqItems.forEach(item => {
+                    const question = item.querySelector('.faq-question');
+                    const answer = item.querySelector('.faq-answer');
+                    const icon = question.querySelector('i');
+
+                    question.addEventListener('click', () => {
+                        const isExpanded = question.getAttribute('aria-expanded') === 'true';
+                        
+                        question.setAttribute('aria-expanded', !isExpanded);
+                        answer.style.maxHeight = isExpanded ? null : answer.scrollHeight + 'px';
+                        icon.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
+                    });
+                });
+
+                // Funcionalidad de búsqueda
+                faqSearch.addEventListener('input', (e) => {
+                    const searchTerm = e.target.value.toLowerCase();
+                    faqItems.forEach(item => {
+                        const questionText = item.querySelector('.faq-question span').textContent.toLowerCase();
+                        if (questionText.includes(searchTerm)) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+
+                // Botón de scroll a contacto
+                scrollToContactBtn.addEventListener('click', () => {
+                    document.getElementById('contact-section').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        </script>
+        <!--Fin - Script -->
+    </div>    
+</body>
+</html>

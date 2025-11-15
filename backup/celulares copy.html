@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Celulares | Comparatech</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="Imagenes/Logos/logo1.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="conteiner">
+    <!-- Encabezado -->
+    <header class="header">
+      <div class="logo">
+        <a href="Index.html"><img src="Imagenes/Logos/logo1.png" alt="logo" width="100"></a>
+        <h1>Comparatech</h1>
+      </div>
+      <nav class="nav">
+        <ul>
+          <div class="dropdown">
+            <button>≡</button>
+            <div class="dropdown-options">
+              <a href="inicio.html">Inicio</a>
+              <a href="noticias.html">Noticias</a>
+              <a href="categoria.html">Categorías</a>
+              <a href="soporte.html">Soporte</a>
+            </div>
+          </div>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Sección principal -->
+    <main>
+      <section class="compare-section">
+        <h2>Catálogo de Celulares</h2>
+        <p>Explora los últimos smartphones con información en tiempo real.</p>
+      </section>
+
+      <div class="grid" id="productGrid">
+        <p style="text-align:center; color:#00bcd4;">Cargando productos...</p>
+      </div>
+
+      <!-- Botón para ir a comparar -->
+      <div style="text-align:center; margin:30px;">
+        <a href="comparar.html" class="submit-button" style="text-decoration:none;">Ir a Comparar</a>
+      </div>
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="footer">
+      <p>@Derechos reservados por MONDONGO INTERACTIVE SAS</p>
+    </footer>
+  </div>
+
+  <!-- Script -->
+  <script>
+(async function() {
+  // Helpers seguros para localStorage
+  function readLocal(key) {
+    try {
+      return JSON.parse(localStorage.getItem(key)) || null;
+    } catch (e) {
+      console.error("Error parseando localStorage", e);
+      return null;
+    }
+  }
+  function writeLocal(key, value) {
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+      return true;
+    } catch (e) {
+      console.error("Error escribiendo localStorage", e);
+      return false;
+    }
+  }
+
+  const grid = document.getElementById("productGrid");
+  if (!grid) {
+    console.error("No se encontró el contenedor #productGrid en el DOM.");
+    return;
+  }
+
+  // Muestra mensaje de carga
+  grid.innerHTML = `<p style="text-align:center; color:#00bcd4;">Cargando productos...</p>`;
+
+  // Muestra contador simple (opcional)
+  function updateCompareIndicator() {
+    const productos = readLocal("comparar") || [];
+    // Si quieres mostrar un badge, busca #compare-count en tu HTML; si no existe, no hace nada.
+    const badge = document.getElementById("compare-count");
+    if (badge) badge.textContent = productos.length;
+  }
+  updateCompareIndicator();
+
+  // Llamada a la API (DummyJSON)
+  try {
+    const res = await fetch("https://dummyjson.com/products/category/smartphones");
+    if (!res.ok) throw new Error("Respuesta no OK: " + res.status);
+    const data = await res.json();
+
+    // Limpiar
+    grid.innerHTML = "";
+
+    // Si no hay productos
+    if (!data?.products?.length) {
+      grid.innerHTML = `<p style="text-align:center; color:#aaa;">No se encontraron productos.</p>`;
+      return;
+    }
+
+    // Crear cards
+    data.products.forEach(p => {
+      const card = document.createElement("div");
+      card.className = "card";
+
+      // Construimos innerHTML con plantilla segura (las propiedades son controladas por la API)
+      card.innerHTML = `
+        <img src="${p.thumbnail}" alt="${p.title}">
+        <div class="card-content">
+          <h3>${p.title}</h3>
+          <p><strong>Marca:</strong> ${p.brand}</p>
+          <p class="price">$${p.price}</p>
+          <p style="font-size:0.9rem; color:#ccc;">${(p.description || "").slice(0, 90)}...</p>
+          <div style="display:flex; gap:10px; margin-top:10px;">
+            <button class="submit-button btn-compare">Comparar</button>
+            <button class="submit-button btn-fav" style="background:#444; color:#fff;">Favorito</button>
+          </div>
+        </div>
+      `;
+
+      // Evento: agregar a comparar (usa objeto, no strings)
+      const compareBtn = card.querySelector(".btn-compare");
+      compareBtn.addEventListener("click", () => {
+        const producto = {
+          nombre: p.title,
+          marca: p.brand,
+          precio: `$${p.price}`,
+          imagen: p.thumbnail
+        };
+        addToCompare(producto);
+      });
+
+      // (Opcional) Favoritos — ejemplo rápido que guarda en localStorage 'favoritos'
+      const favBtn = card.querySelector(".btn-fav");
+      favBtn.addEventListener("click", () => {
+        const favs = readLocal("favoritos") || [];
+        if (favs.some(f => f.nombre === p.title)) {
+          alert("Este producto ya está en Favoritos.");
+          return;
+        }
+        favs.push({ nombre: p.title, marca: p.brand, precio: `$${p.price}`, imagen: p.thumbnail });
+        writeLocal("favoritos", favs);
+        alert("✅ Agregado a Favoritos.");
+      });
+
+      grid.appendChild(card);
+    });
+  } catch (err) {
+    console.error("Error al cargar la API:", err);
+    grid.innerHTML = `
+      <p style="color:#f66; text-align:center;">❌ No se pudieron cargar los productos. Verifica tu conexión.</p>
+    `;
+  }
+
+  // Función para agregar al comparador (robusta)
+  function addToCompare(producto) {
+    const productos = readLocal("comparar") || [];
+    if (!Array.isArray(productos)) {
+      // si algo raro hay en storage, resetear
+      writeLocal("comparar", []);
+    }
+    const current = readLocal("comparar") || [];
+
+    // Evitar duplicados (por nombre exacto)
+    if (current.some(p => p.nombre === producto.nombre)) {
+      alert("Este producto ya está en la lista de comparación.");
+      return;
+    }
+
+    if (current.length >= 2) {
+      alert("⚠️ Ya tienes 2 productos seleccionados. Ve a comparar.");
+      return;
+    }
+
+    current.push(producto);
+    writeLocal("comparar", current);
+    updateCompareIndicator();
+    alert(`✅ ${producto.nombre} agregado para comparar.`);
+  }
+
+  // actualizar indicador al cargar (si hay otro tab que modifique localStorage)
+  window.addEventListener("storage", () => updateCompareIndicator());
+})();
+</script>
+  
+</body>
+</html>

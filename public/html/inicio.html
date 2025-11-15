@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio | Comparatech</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="icon" href="../images/Logos/logo1.png" type="image/png">
+</head>
+<body>
+    <div class="conteiner">
+        <!-- Encabezado -->
+        <header class="header">
+            <div class="logo">
+                <a href="index.html"><img src="../images/Logos/logo1.png" alt="logo" width="100"></a>
+                <h1>Comparatech</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <div class="dropdown">
+                        <button>≡</button>
+                        <div class="dropdown-options">
+                            <a href="inicio.html">Inicio</a>
+                            <a href="noticias.html">Noticias</a>
+                            <a href="categoria.html">Categorías</a>
+                            <a href="soporte.html">Soporte</a>
+                        </div>
+                    </div>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Contenido principal -->
+        <main class="main-content">
+            <!-- ===================== HERO + CAROUSEL (DOS COLUMNAS) ===================== -->
+            <div class="hero-carousel-wrapper">
+                <!-- Hero principal -->
+                <section class="hero">
+                    <div class="hero-content">
+                        <h2>Bienvenido a <span>Comparatech</span></h2>
+                        <p>Tu portal de confianza para comparar, elegir y conocer los mejores productos tecnológicos del mercado 2025.</p>
+                        <a href="categoria.html" class="cta-button">Explorar Categorías</a>
+                    </div>
+                </section>
+
+                <!-- ===================== ACCESOS RÁPIDOS (CARRUSEL) ===================== -->
+                <section class="accesos-rapidos">
+                    <div class="carousel-container">
+                        <div class="carousel-slide active">
+                            <img src="../images/CELULARES.png" alt="Celulares">
+                            <div class="carousel-text">
+                                <a href="celulares.html" class="carousel-btn">Ver más</a>
+                            </div>
+                        </div>
+
+                        <div class="carousel-slide">
+                            <img src="../images/NEVERAS.png" alt="Neveras">
+                            <div class="carousel-text">
+                                <a href="neveras.html" class="carousel-btn">Ver más</a>
+                            </div>
+                        </div>
+
+                        <div class="carousel-slide">
+                            <img src="../images/NOTICIAS.png" alt="Noticias">
+                            <div class="carousel-text">
+                                <a href="noticias.html" class="carousel-btn">Ir ahora</a>
+                            </div>
+                        </div>
+
+                        <div class="carousel-slide">
+                            <img src="../images/SOPORTE.png" alt="Soporte">
+                            <div class="carousel-text">
+                                <a href="soporte.html" class="carousel-btn">Contactar</a>
+                            </div>
+                        </div>
+
+                        <!-- Botones integrados en el carrusel -->
+                        <button class="carousel-btn-prev">❮</button>
+                        <button class="carousel-btn-next">❯</button>
+
+                        <!-- Barra de progreso -->
+                        <div class="carousel-progress">
+                            <div class="progress-bar" style="width: 25%;"></div>
+                            <div class="progress-bar"></div>
+                            <div class="progress-bar"></div>
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                </section>
+                <!-- ===================== FIN ACCESOS RÁPIDOS ===================== -->
+            </div>
+            <!-- ===================== FIN HERO + CAROUSEL ===================== -->
+
+            <!-- Sección de presentación -->
+            <section class="about-section">
+                <h3>¿Qué es Comparatech?</h3>
+                <p>
+                    Comparatech es una plataforma creada para ayudarte a comparar productos tecnológicos de manera sencilla,
+                    clara y precisa. Nuestro objetivo es ofrecerte toda la información que necesitas para tomar decisiones inteligentes,
+                    ya sea al comprar un nuevo celular, nevera, laptop o cualquier otro dispositivo.
+                </p>
+            </section>
+        </main>
+
+        <!-- Pie de página -->
+        <footer class="footer">
+            <p>@Derechos reservados por MONDONGO INTERACTIVE SAS</p>
+        </footer>
+    </div>
+
+    <!-- Script del Carrusel -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // ===== FUNCIONALIDAD DEL CARRUSEL =====
+            const slides = document.querySelectorAll('.carousel-slide');
+            const nextBtn = document.querySelector('.carousel-btn-next');
+            const prevBtn = document.querySelector('.carousel-btn-prev');
+            const progressBars = document.querySelectorAll('.progress-bar');
+
+            if (slides.length > 0 && nextBtn && prevBtn) {
+                let currentIndex = 0;
+
+                function showSlide(index) {
+                    slides.forEach((slide, idx) => {
+                        slide.classList.toggle('active', idx === index);
+                    });
+                    
+                    // Actualizar barra de progreso
+                    progressBars.forEach((bar, idx) => {
+                        bar.classList.toggle('active', idx === index);
+                    });
+                }
+
+                nextBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex + 1) % slides.length;
+                    showSlide(currentIndex);
+                });
+
+                prevBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                    showSlide(currentIndex);
+                });
+
+                // Auto-advance carrusel cada 6 segundos
+                setInterval(() => {
+                    currentIndex = (currentIndex + 1) % slides.length;
+                    showSlide(currentIndex);
+                }, 6000);
+
+                // Hacer clickeable la imagen del carrusel
+                slides.forEach(slide => {
+                    const img = slide.querySelector('img');
+                    const link = slide.querySelector('a');
+                    
+                    if (img && link) {
+                        img.addEventListener('click', () => {
+                            window.location.href = link.href;
+                        });
+                    }
+                });
+
+                // Inicializar barra de progreso
+                showSlide(currentIndex);
+            }
+        });
+    </script>
+</body>
+</html>

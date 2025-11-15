@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Categorías — Comparatech</title>
+
+  <link rel="stylesheet" href="../styles/styles.css" />
+  <link rel="icon" href="../images/Logos/logo1.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="conteiner">
+    <header class="header">
+      <div class="logo">
+        <a href="index.html">
+          <img src="../images/Logos/logo1.png" alt="logo Comparatech" width="100" />
+        </a>
+        <h1>Comparatech</h1>
+      </div>
+
+      <nav class="nav">
+        <div class="dropdown">
+          <button aria-label="Abrir menú">≡</button>
+          <div class="dropdown-options">
+            <a href="inicio.html">Inicio</a>
+            <a href="noticias.html">Noticias</a>
+            <a href="categoria.html">Categorías</a>
+            <a href="soporte.html">Soporte</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <h2 style="color:#00bcd4; margin-bottom:25px;">Explora nuestras categorías</h2>
+
+      <div class="category-container">
+        <a href="celulares.html" class="category-item">
+          <button class="btn-effect-1">
+            <img src="../images/Iconos/Celular.png" alt="Celulares" />
+            <span class="category-title">Celulares</span>
+          </button>
+        </a>
+
+        <a href="neveras.html" class="category-item">
+          <button class="btn-effect-1">
+            <img src="../images/Iconos/Nevera.png" alt="Neveras" />
+            <span class="category-title">Neveras</span>
+          </button>
+        </a>
+
+        <a href="#" class="category-item">
+          <button class="btn-effect-1">
+            <img src="../images/Iconos/Airfryer.png" alt="Airfryer" />
+            <span class="category-title">Airfryer</span>
+          </button>
+        </a>
+
+        <a href="#" class="category-item">
+          <button class="btn-effect-1">
+            <img src="../images/Iconos/Television.png" alt="Televisores" />
+            <span class="category-title">Televisores</span>
+          </button>
+        </a>
+
+        <a href="#" class="category-item">
+          <button class="btn-effect-1">
+            <img src="../images/Iconos/Lavadora.png" alt="Lavadoras" />
+            <span class="category-title">Lavadoras</span>
+          </button>
+        </a>
+
+        <a href="#" class="category-item">
+          <button class="btn-effect-1">
+            <img src="../images/Iconos/AireAcondicionado.png" alt="Aires Acondicionados" />
+            <span class="category-title">Aires Acondicionados</span>
+          </button>
+        </a>
+
+        <a href="#" class="category-item">
+          <button class="btn-effect-1">
+            <img src="../images/Iconos/laptop.png" alt="Portátiles" />
+            <span class="category-title">Portátiles</span>
+          </button>
+        </a>
+
+        <a href="#" class="category-item">
+          <button class="btn-effect-1">
+            <img src="../images/Iconos/SmartWatch.png" alt="Smartwatch" />
+            <span class="category-title">Smartwatch</span>
+          </button>
+        </a>
+
+        <a href="#" class="category-item">
+          <button class="btn-effect-1">
+            <img src="../images/Iconos/Aspiradora.png" alt="Aspiradoras" />
+            <span class="category-title">Aspiradoras</span>
+          </button>
+        </a>
+
+        <a href="#" class="category-item">
+          <button class="btn-effect-1">
+            <img src="../images/Iconos/Parlantes.png" alt="Parlantes" />
+            <span class="category-title">Parlantes</span>
+          </button>
+        </a>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>© <span id="year"></span> MONDONGO INTERACTIVE SAS — Todos los derechos reservados</p>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
